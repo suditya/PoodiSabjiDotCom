@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    background-color: black;
+    color: white;
+    padding: 1.8rem;
+    font-size: larger;
+    font-family: monospace;
+    font-weight: 900;
+  }
+  
+  .left {
+    width: 30%;
+  }
+  
+  .right {
+    display: flex;
+    gap: 10px; /* Add consistent spacing between links */
+  }
+  
+  .right a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .right a:hover {
+    text-decoration: underline; /* Add an underline on hover for better feedback */
+  }
+  

@@ -1,0 +1,38 @@
+.food-contianer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+}
+.wrapper {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+.right {
+}
+.cart {
+  position: fixed;
+  top: 20px; /* Adjust the top position as needed */
+  right: 20px; /* Adjust the right position as needed */
+  width: 100%;
+  margin-top: 0rem;
+  position: relative;
+  min-height: 28rem rem;
+  max-height: 60vh;
+  width: 20rem;
+  background: rgb(255, 255, 255);
+  overflow-y: auto;
+  transition: all 1s ease 0s;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.12) 0px 2px 4px 0px;
+  width: 35%;
+  border: 0.5px grey;
+  height: 600px;
+}
+.right {
+  /* position: fixed;
+  margin-right: 7.5rem; */
+}

@@ -1,0 +1,33 @@
+.cart-box-container {
+  font-family: "Nova Mono", monospace;
+  padding: 8px;
+  background-color: whitesmoke;
+  color: black;
+}
+.food-description {
+  display: flex;
+  width: 100%;
+  /* justify-content: ; */
+  /* align-items: center; */
+  color: #7a7a7ade rgb(47.84% 47.84% 47.84% / 0.87) hsl(0 0% 47.84% / 0.87)
+    hwb(0 47.84% 52.16% / 0.87) lch(51.22 0 0 / 0.87) oklch(0.58 0 0 / 0.87)
+    lab(51.22 0 0 / 0.87) oklab(57.95% 0 0 / 0.87);
+}
+.food {
+  width: 35%;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+.description {
+  width: 55%;
+  padding: 2px;
+  color: #7a7a7ade rgb(47.84% 47.84% 47.84% / 0.87) hsl(0 0% 47.84% / 0.87)
+    hwb(0 47.84% 52.16% / 0.87) lch(51.22 0 0 / 0.87) oklch(0.58 0 0 / 0.87)
+    lab(51.22 0 0 / 0.87) oklab(57.95% 0 0 / 0.87);
+  font-size: 14px;
+}
+.title {
+  line-height: 1.1;
+  /* margin: 1px auto; */
+}
