@@ -1,44 +1,44 @@
+/* PlusMinus.css */
+
 .plus-minus-container {
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   cursor: pointer;
   border: 1px solid rgb(186, 186, 186);
   max-width: 6rem;
   border-radius: 3px;
-}
-.plus-minus-buttons {
-  /* background-image: url(/static/assets/icons/plus.svg); */
-  /* background-image: url(/static/assets/icons/minus.svg); */
-  min-width: 0.3em;
-  min-height: 0.3em;
-  /* background-size: 100% 100%; */
-  margin: 0px 0.3rem;
-  width: 1.5rem;
-  height: 0.9rem;
-  /* background-repeat: no-repeat; */
-  font-size: 24px;
-  font-weight: 600px;
-  color: rgb(186, 186, 186);
-  /* padding: 0 10px; */
-  padding: 20px 10px;
-  text-align: center;
-  /* width: 2rem; */
-  /* height: 2rem; */
-  border-radius: 9px;
-}
-.quantity {
-  border-left: 1px solid rgb(186, 186, 186);
-  border-right: 1px solid rgb(186, 186, 186);
-  padding: 0.32rem rem 0.8rem;
-  font-weight: 600;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-/* button.plus-minus-buttons {
-   
+  justify-content: flex-end;
 }
 
-.plus-minus-container {
-    padding: 0px;
-} */
+.plus-minus-buttons {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #007bff;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.quantity {
+  margin: 0 8px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+button {
+  background-color: #007bff;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

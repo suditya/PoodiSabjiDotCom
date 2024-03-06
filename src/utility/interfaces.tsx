@@ -4,12 +4,14 @@ export interface ICartItems {
 
 export interface IPlusMinus {
   quantity: number;
+  // onClick: () => void;
 }
 
 export interface ICartProps {
+  id?: string;
   src: string;
   description: string;
   title: string;
-  price: string;
+  price: number;
   quantity: number;
 }

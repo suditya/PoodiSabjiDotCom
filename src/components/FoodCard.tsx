@@ -1,9 +1,9 @@
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import PlusMinus from "./PlusMinus";
 
 interface IProps {
   id: string;
-  price: string;
+  price: number;
   src: string;
   description: string;
   title: string;
@@ -12,25 +12,31 @@ interface IProps {
 }
 
 function FoodCard(props: IProps) {
-  function handleAddToCart() {
-    console.log(props);
-    props.addToCart(props);
-  }
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem", height: "24rem", marginTop: "5px" }}>
       <Card.Img
-        style={{ height: "250px", objectFit: "cover" }}
+        style={{
+          height: "8.5rem",
+          width: "100%",
+          borderRadius: "3px 3px 0px 0px",
+          objectFit: "cover",
+        }}
         variant="top"
         src={props.src}
       />
       <Card.Body>
         <Card.Title>
-          {props.title} ₹{props.price ?? "0"}
+          {props.title} ₹{props.price ?? 0}
         </Card.Title>
-        <Card.Text>{props.description}</Card.Text>
-        <Button variant="primary" onClick={handleAddToCart}>
-          Add to Cart 
-        </Button>
+        <Card.Text className="overflow-hidden">{props.description}</Card.Text>
+        <PlusMinus
+          src={props.src}
+          id={props.id}
+          title={props.title}
+          price={props.price}
+          description={props.description}
+          quantity={props.quantity}
+        />
       </Card.Body>
     </Card>
   );
