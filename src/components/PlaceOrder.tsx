@@ -16,10 +16,10 @@ const PlaceOrder = () => {
 
     // Set the orderPlaced state to true when the order is successfully placed.
     setOrderPlaced(true);
-    setTimeout(() => {
-      cart.setCartItems([]);
-      navigate("/");
-    }, 2000);
+    // setTimeout(() => {
+    //   // cart.setCartItems([]);
+    //   // navigate("/");
+    // }, 2000);
   };
 
   const getTotalPrice = () => {
@@ -55,7 +55,7 @@ const PlaceOrder = () => {
             </tbody>
           </table>
           <p>Total: ${getTotalPrice()}</p>
-          <button onClick={handlePlaceOrder}>Place Order</button>
+          <button onClick={() => navigate("/payment")}>Place Order</button>
         </div>
       </div>
       {orderPlaced && <OrderConfirmation />}

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/cart";
 
-const PlusMinus = (props) => {
+const PlusMinus = (props: { id: any; }) => {
   const cart = useContext(CartContext);
 
   const addToCart = () => {

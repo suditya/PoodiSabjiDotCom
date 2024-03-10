@@ -11,7 +11,7 @@ interface IProps {
   quantity: number;
 }
 
-function FoodCard(props: IProps) {
+const FoodCard = (props: IProps) => {
   return (
     <Card style={{ width: "18rem", height: "24rem", marginTop: "5px" }}>
       <Card.Img
@@ -40,6 +40,6 @@ function FoodCard(props: IProps) {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default FoodCard;
