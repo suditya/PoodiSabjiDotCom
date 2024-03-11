@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import { toast } from "react-toastify";
+import { isLoggedIn } from "../services/users";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
 
 const Navbar = () => {
+  const cart = useContext(CartContext);
   const handleLogout = () => {
     toast.success(`Successfully logged out`);
-    // also delete from the local storage
-    localStorage.clear();
+    localStorage.removeItem("LoggedInEmail");
+    cart.setCartItems([]); // empty array
+    console.log("after logout", localStorage.getItem("LoggedInEmail"));
+    window.location.reload();
   };
-  const isLoggedIn = () => {
-    console.log(localStorage.getItem("LoggedInEmail"), " logged in email");
-    return localStorage.getItem("LoggedInEmail");
-  };
+
   return (
     <nav className="navbar-container">
       <div className="left">
@@ -23,9 +26,8 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         {/* <Link to="/about-us">About Us</Link> */}
         <Link to="/checkout">Checkout</Link>
-        {isLoggedIn() ? (
+        {!isLoggedIn() ? (
           <>
-            {" "}
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </>

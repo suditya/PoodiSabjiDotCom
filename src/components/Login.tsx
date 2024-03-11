@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/Login.css";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_DEV_URL } from "../utility/common";
+import { CartContext } from "../context/cart";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +13,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   //   console.log(email, " ", password);
+  const cart = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -61,15 +64,17 @@ const Login = () => {
         email,
         password,
       };
-      const response = await axios.post(
-        "http://localhost:3000/api/login",
-        userData
-      );
+      const response = await axios.post(BACKEND_DEV_URL + "/login", userData);
       console.log(response);
       //   toast.info(JSON.stringify(response));
       if (response.status === 200) {
         toast.success("Successfully LoggedIn ");
         localStorage.setItem("LoggedInEmail", email);
+        const response = await axios.get(BACKEND_DEV_URL + "/get-cart", {
+          params: { email: email },
+        });
+        console.log(response, " from the backend after login");
+        cart.setCartItems(response.data.cartItems);
         setTimeout(() => navigate("/"), 2000);
       } else {
         toast.error(`Could not login due to: ${response.data.message}`);
