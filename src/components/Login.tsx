@@ -79,7 +79,7 @@ const Login = () => {
       } else {
         toast.error(`Could not login due to: ${response.data.message}`);
       }
-    } catch (error) {
+    } catch (error ) {
       toast.error(error.response.data.message);
     }
     // toast.success("Succesfully Logged In!");

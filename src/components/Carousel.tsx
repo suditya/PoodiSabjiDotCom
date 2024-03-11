@@ -8,10 +8,21 @@ const Carousel = () => {
     dots: true,
     infinite: true,
     speed: 1000,
+    pauseOnHover: true,
+    pauseOnFocus : true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2500, // Adjust the autoplay speed (in milliseconds)
+    autoplaySpeed: 2500, // Adjust the autoplay speed (in milliseconds),
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false, // Hide arrows on smaller screens
+        },
+      },
+    ],
   };
 
   const gifs = [

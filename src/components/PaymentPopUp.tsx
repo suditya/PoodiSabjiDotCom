@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/PaymentPopUp.css";
 import Navbar from "./Navbar";
+import { getEmailId, isLoggedIn } from "../services/users";
+import { CartContext } from "../context/cart";
+import { ICartProps } from "../utility/interfaces";
+import { toast } from "react-toastify";
+import { BACKEND_DEV_URL, isNullOrUndefined } from "../utility/common";
 
 const PaymentPopup = () => {
   const [processing, setProcessing] = useState(true);
   const [success, setSuccess] = useState(false);
+  const cart = useContext(CartContext);
+  const cartItems = cart.cartItems as ICartProps[];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,21 +25,27 @@ const PaymentPopup = () => {
   const downloadBill = () => {
     // Implement the logic to download the bill PDF
     console.log("Downloading bill PDF...");
+    if (!isLoggedIn()) {
+      toast.error(`You must be logged in to download the bill`);
+      return;
+    }
+    if (isNullOrUndefined(cartItems) || cartItems.length == 0) {
+      toast.error(`Cart is empty please add items to cart`);
+    }
+
     generatePDF();
   };
 
   const generatePDF = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/generate-pdf");
+      const response = await fetch(
+        BACKEND_DEV_URL + "/generate-pdf?email=" + getEmailId()
+      );
+      // Create a download link for the PDF
       const blob = await response.blob();
 
-      // Create a download link for the PDF
-      const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "bill.pdf");
-      document.body.appendChild(link);
-      link.click();
+      // Open the PDF in a new tab
+      window.open(URL.createObjectURL(blob), "_blank");
     } catch (error) {
       console.error("Error fetching PDF:", error);
     }

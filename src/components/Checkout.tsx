@@ -7,7 +7,7 @@ import PlusMinus from "./PlusMinus";
 import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const cart = useContext(CartContext);
-  const cartItems = cart.cartItems ?? [];
+  const cartItems = cart.cartItems as ICartProps[];
   const navigate = useNavigate();
 
   const getTotalPrice = () => {

@@ -2,12 +2,12 @@ import { useContext, useEffect } from "react";
 import { CartContext } from "../context/cart";
 import axios from "axios";
 import { BACKEND_DEV_URL, isNullOrUndefined } from "../utility/common";
-import { getEmailId, isLoggedIn } from "../services/users";
+import { isLoggedIn } from "../services/users";
 import { ICartProps } from "../utility/interfaces";
 
 const PlusMinus = (props: ICartProps) => {
   const cart = useContext(CartContext);
-  const cartItems = cart.cartItems;
+  const cartItems = cart.cartItems as ICartProps[];
   const email = localStorage.getItem("LoggedInEmail");
   useEffect(() => {
     if (isLoggedIn() && cartItems && cartItems.length > 0) {
@@ -29,25 +29,32 @@ const PlusMinus = (props: ICartProps) => {
 
   const addToCart = async () => {
     const item = props;
-    const updatedItems = [...(cart.cartItems ?? [])];
+    let updatedItems = [...(cart.cartItems ?? [])] as ICartProps[];
     let existingItemIndex = -1;
+
     if (updatedItems.length > 0) {
       existingItemIndex = updatedItems.findIndex((it) => it.id === item.id);
     }
+
     if (existingItemIndex !== -1) {
       updatedItems[existingItemIndex] = {
         ...updatedItems[existingItemIndex],
       };
       updatedItems[existingItemIndex].quantity += 1;
     } else {
-      updatedItems.push(item);
+      // If the item is not in the cart, add it with quantity 1
+      updatedItems.push({ ...item, quantity: 1 });
     }
+
+    // Remove items with quantity 0 or less
+    updatedItems = updatedItems.filter((item) => item.quantity > 0);
+
     cart.setCartItems(updatedItems);
-    console.log(cartItems);
+    console.log(updatedItems); // Use updatedItems instead of cartItems
   };
 
   const incrementQuantity = () => {
-    const updatedCartItems = cart.cartItems.map((item) => {
+    const updatedCartItems = cartItems.map((item) => {
       if (item.id === props.id) {
         item.quantity += 1;
       }
@@ -66,14 +73,14 @@ const PlusMinus = (props: ICartProps) => {
     ) {
       cart.cartItems = [];
     }
-    const updatedCartItems =
-      cart.cartItems.map((item) => {
+    let updatedCartItems =
+      cartItems.map((item) => {
         if (item.id === props.id) {
           item.quantity -= 1;
         }
         return item;
       }) ?? [];
-
+    updatedCartItems = updatedCartItems.filter((item) => item.quantity > 0);
     cart.setCartItems(updatedCartItems);
     console.log(cartItems);
   };
@@ -85,7 +92,7 @@ const PlusMinus = (props: ICartProps) => {
       cart.cartItems.length == 0
     )
       return 0;
-    const item = cart.cartItems.find((it) => it.id === props.id);
+    const item = cartItems.find((it) => it.id === props.id);
     return item ? item.quantity : 0;
   };
 
