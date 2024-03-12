@@ -5,26 +5,34 @@ import { CartContext } from "../context/cart";
 import "../styles/PlaceOrder.css"; // Import the CSS file
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import { ICartProps } from "../utility/interfaces";
+import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
   const [orderPlaced, setOrderPlaced] = useState(false);
   const cart = useContext(CartContext);
+  const cartItems = (cart.cartItems ?? []) as unknown as ICartProps[];
 
   const handlePlaceOrder = () => {
     // Perform order placement logic (API calls, updates, etc.)
-
+    if (cartItems.length <= 0) {
+      toast.error("Cart can not be empty for placing order", {
+        position: "top-center",
+      });
+      return;
+    }
     // Set the orderPlaced state to true when the order is successfully placed.
     setOrderPlaced(true);
     // setTimeout(() => {
-    //   // cart.setCartItems([]);
-    //   // navigate("/");
-    // }, 2000);
+    // cart.setCartItems([]);
+    navigate("/payment");
+    // }, 0);
   };
 
   const getTotalPrice = () => {
     let sum = 0;
-    for (const item of cart.cartItems) {
+    for (const item of cartItems) {
       sum += item.price * item.quantity;
     }
     return sum;
@@ -45,7 +53,7 @@ const PlaceOrder = () => {
               </tr>
             </thead>
             <tbody>
-              {cart.cartItems.map((item) => (
+              {cartItems.map((item) => (
                 <tr key={item.id}>
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
@@ -55,7 +63,12 @@ const PlaceOrder = () => {
             </tbody>
           </table>
           <p>Total: ${getTotalPrice()}</p>
-          <button onClick={() => navigate("/payment")}>Place Order</button>
+          <button
+            // disabled={cartItems.length <= 0}
+            onClick={() => handlePlaceOrder()}
+          >
+            Place Order
+          </button>
         </div>
       </div>
       {orderPlaced && <OrderConfirmation />}

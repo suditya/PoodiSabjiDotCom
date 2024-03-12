@@ -15,16 +15,6 @@ import PaymentPopup from "./components/PaymentPopUp";
   url('https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Nova+Mono&family=Tektur&display=swap')
 </style>;
 
-interface IProps {
-  id: string;
-  src: string;
-  description: string;
-  title: string;
-  price: number;
-  addToCart: (item: IProps) => void;
-  quantity: number;
-}
-
 const App = () => {
   return (
     <BrowserRouter>

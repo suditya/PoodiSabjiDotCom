@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import "../styles/Checkout.css";
 import PlusMinus from "./PlusMinus";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Checkout = () => {
   const cart = useContext(CartContext);
   const cartItems = cart.cartItems as ICartProps[];
@@ -16,6 +17,19 @@ const Checkout = () => {
       sum += item.price * item.quantity;
     }
     return sum;
+  };
+
+  const handlePlaceOrder = () => {
+    if (cartItems.length <= 0) {
+      toast.error("Cart can not be empty for placing order", {
+        position: "bottom-right",
+      });
+      return;
+    } else {
+      setTimeout(() => {
+        navigate("/place-order");
+      }, 500);
+    }
   };
 
   return (
@@ -90,7 +104,7 @@ const Checkout = () => {
             </table>
             <button
               className="place-order-btn"
-              onClick={() => navigate("/place-order")}
+              onClick={() => handlePlaceOrder()}
             >
               PLACE ORDER
             </button>
