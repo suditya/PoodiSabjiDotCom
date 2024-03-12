@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import { useContext } from "react";
 import { CartContext } from "../context/cart";
 import { ICartProps } from "../utility/interfaces";
+import "../styles/Home.css";
 
 const Home = () => {
   const cart = useContext(CartContext);
@@ -36,15 +37,16 @@ const Home = () => {
           <hr />
           {/* </div> */}
         </div>
-        {cartItems.length > 0 && (
-          <button
-            style={{ transition: "all 0.5s ease-out" }}
-            className="go-to-checkout"
-            onClick={() => navigate("/checkout")}
-          >
-            Go To Checkout
-          </button>
-        )}
+
+        <button
+          style={{ transition: "all 0.8s ease-out" }}
+          className={
+            "go-to-checkout " + (cartItems.length > 0 ? "showCart" : "hideCart")
+          }
+          onClick={() => navigate("/checkout")}
+        >
+          Go To Checkout
+        </button>
       </div>
     </div>
   );
