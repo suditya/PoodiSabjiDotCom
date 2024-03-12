@@ -4,8 +4,13 @@ import Carousel from "./Carousel";
 import Cart from "./Cart";
 import FoodCard2 from "./FoodCard2";
 import Navbar from "./Navbar";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
+import { ICartProps } from "../utility/interfaces";
 
 const Home = () => {
+  const cart = useContext(CartContext);
+  const cartItems = (cart.cartItems ?? []) as ICartProps[];
   const navigate = useNavigate();
   return (
     <div>
@@ -31,12 +36,15 @@ const Home = () => {
           <hr />
           {/* </div> */}
         </div>
-        <button
-          className="go-to-checkout"
-          onClick={() => navigate("/checkout")}
-        >
-          Go To Checkout
-        </button>
+        {cartItems.length > 0 && (
+          <button
+            style={{ transition: "all 0.5s ease-out" }}
+            className="go-to-checkout"
+            onClick={() => navigate("/checkout")}
+          >
+            Go To Checkout
+          </button>
+        )}
       </div>
     </div>
   );

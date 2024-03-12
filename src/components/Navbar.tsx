@@ -8,29 +8,32 @@ import { CartContext } from "../context/cart";
 const Navbar = () => {
   const cart = useContext(CartContext);
   const handleLogout = () => {
-    toast.success(`Successfully logged out`);
+    toast.success(`🎉 Successfully logged out`, {
+      position: "top-center",
+      // delay: 2500,
+    });
     localStorage.removeItem("LoggedInEmail");
     cart.setCartItems([]); // empty array
-    console.log("after logout", localStorage.getItem("LoggedInEmail"));
+    console.log("🔒 After logout", localStorage.getItem("LoggedInEmail"));
   };
 
   return (
     <nav className="navbar-container">
       <div className="left">
         <Link style={{ textDecoration: "none", color: "white" }} to="/">
-          <h4>poodi-sabji.com</h4>
+          <h4>🌽 poodi-sabji.com</h4>
         </Link>
       </div>
       <div className="right">
-        <Link to="/">Home</Link>
-        <Link to="/checkout">Checkout</Link>
+        <Link to="/">🏠 Home</Link>
+        <Link to="/checkout">🛒 Checkout</Link>
         {!isLoggedIn() ? (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login">🔐 Login</Link>
+            <Link to="/register">📝 Register</Link>
           </>
         ) : (
-          <a onClick={handleLogout}>Logout</a>
+          <a onClick={handleLogout}>🚪 Logout</a>
         )}
       </div>
     </nav>

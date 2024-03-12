@@ -97,18 +97,51 @@ const PlusMinus = (props: ICartProps) => {
   };
 
   return (
-    <div className="plus-minus-container" style={{ display: "flex" }}>
+    <div
+      className="plus-minus-container"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        border: "1px solid #ddd",
+        borderRadius: "5px",
+        overflow: "hidden",
+      }}
+    >
       {getQuantityFromCartItems() > 0 ? (
         <>
           <button
-            // style={{ backgroundColor: "white", color: "black" }}
+            style={{
+              backgroundColor: "white",
+              color: "black",
+              border: "none",
+              padding: "8px 12px",
+              cursor: "pointer",
+            }}
             className="plus-minus-buttons"
             onClick={() => decrementQuantity()}
           >
             ➖
           </button>
-          <button className="quantity">{getQuantityFromCartItems()}</button>
           <button
+            style={{
+              backgroundColor: "#f0f0f0",
+              border: "none",
+              padding: "8px 12px",
+              cursor: "default",
+              color: "black",
+            }}
+            className="quantity"
+          >
+            {getQuantityFromCartItems()}
+          </button>
+          <button
+            style={{
+              backgroundColor: "white",
+              color: "black",
+              border: "none",
+              padding: "8px 12px",
+              cursor: "pointer",
+            }}
             className="plus-minus-buttons"
             onClick={() => incrementQuantity()}
           >
@@ -116,7 +149,18 @@ const PlusMinus = (props: ICartProps) => {
           </button>
         </>
       ) : (
-        <button onClick={() => addToCart()}>Add To Cart</button>
+        <button
+          style={{
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            padding: "8px 12px",
+            cursor: "pointer",
+          }}
+          onClick={() => addToCart()}
+        >
+          Add To Cart
+        </button>
       )}
     </div>
   );

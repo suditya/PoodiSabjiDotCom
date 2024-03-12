@@ -24,7 +24,7 @@
   margin-bottom: 15px;
   width: 100%;
 }
-
+/* 
 .addToCart {
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
 .quantity {
   margin: 0 5px;

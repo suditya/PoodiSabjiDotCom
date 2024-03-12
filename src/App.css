@@ -1,9 +1,14 @@
-
-.wrapper {
+/* .wrapper {
   display: flex;
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 10px;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
 }
 .right {
 }
@@ -116,12 +121,11 @@ body {
 }
 
 .food-container {
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  gap: 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 60%;
   margin: auto;
   height: 600px;
