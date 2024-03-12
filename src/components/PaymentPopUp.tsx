@@ -26,11 +26,17 @@ const PaymentPopup = () => {
     // Implement the logic to download the bill PDF
     console.log("Downloading bill PDF...");
     if (!isLoggedIn()) {
-      toast.error(`You must be logged in to download the bill`);
+      toast.error(`You must be logged in to download the bill`, {
+        position: "top-center",
+        // delay: 2500,
+      });
       return;
     }
     if (isNullOrUndefined(cartItems) || cartItems.length == 0) {
-      toast.error(`Cart is empty please add items to cart`);
+      toast.error(`Cart is empty please add items to cart`, {
+        position: "top-center",
+        // delay: 2500,
+      });
     }
 
     generatePDF();

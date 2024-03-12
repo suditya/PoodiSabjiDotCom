@@ -17,27 +17,27 @@ const Register = () => {
 
     // Check if the user has entered both fields correctly
     if ("" === email) {
-      setEmailError(() => "Please enter your email");
+      setEmailError(() => "Please enter your email 📧");
       return false;
     }
 
     if (!/^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError(() => "Please enter a valid email");
+      setEmailError(() => "Please enter a valid email 📧");
       return false;
     }
 
     if ("" === password) {
-      setPasswordError(() => "Please enter a password");
+      setPasswordError(() => "Please enter a password 🔒");
       return false;
     }
 
     if (password.length < 7) {
-      setPasswordError(() => "The password must be 8 characters or longer");
+      setPasswordError(() => "The password must be 8 characters or longer 🔒");
       return false;
     }
 
     if (password !== confirmPassword) {
-      setPasswordError(() => "Passwords do not match");
+      setPasswordError(() => "Passwords do not match ❌");
       return false;
     }
 
@@ -51,10 +51,16 @@ const Register = () => {
     console.log(passwordError, "  errors ", emailError);
     if (!isValid) {
       if (passwordError) {
-        toast.error(passwordError);
+        toast.error(passwordError, {
+          position: "top-center",
+          // delay: 2500,
+        });
       }
       if (emailError) {
-        toast.error(emailError);
+        toast.error(emailError, {
+          position: "top-center",
+          // delay: 2500,
+        });
       }
       return;
     }
@@ -67,14 +73,27 @@ const Register = () => {
       console.log(response);
       //   toast.info(JSON.stringify(response));
       if (response.status === 200) {
-        toast.success("Successfully registered ");
+        toast.success("Successfully registered 🎉", {
+          position: "top-center",
+          // delay: 2500,
+        });
       } else {
         toast.error(
-          `Could not register due to error: ${response.data.message}`
+          `Not able to register due to ${error.response.data.message} ❌`,
+          {
+            position: "top-center",
+            // delay: 2500,
+          }
         );
       }
     } catch (error) {
-      toast.error(`Not able to register due to ${error.response.data.message}`);
+      toast.error(
+        `Not able to register due to ${error.response.data.message} ❌`,
+        {
+          position: "top-center",
+          // delay: 2500,
+        }
+      );
     }
   };
 
