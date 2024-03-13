@@ -4,11 +4,14 @@ import axios from "axios";
 import { BACKEND_DEV_URL, isNullOrUndefined } from "../utility/common";
 import { isLoggedIn } from "../services/users";
 import { ICartProps } from "../utility/interfaces";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const PlusMinus = (props: ICartProps) => {
   const cart = useContext(CartContext);
   const cartItems = cart.cartItems as ICartProps[];
   const email = localStorage.getItem("LoggedInEmail");
+  const navigate = useNavigate();
   useEffect(() => {
     if (isLoggedIn() && cartItems && cartItems.length > 0) {
       console.log("sending request to backend", cartItems);
@@ -28,6 +31,16 @@ const PlusMinus = (props: ICartProps) => {
   }, [cart.cartItems, cartItems, email]);
 
   const addToCart = async () => {
+    // if not logged in redirect to login page
+    if (!isLoggedIn()) {
+      setTimeout(() => {
+        toast.info(`Login yourself to add to cart`, {
+          position: "top-center",
+        });
+        navigate("/login");
+      });
+      return;
+    }
     const item = props;
     let updatedItems = [...(cart.cartItems ?? [])] as ICartProps[];
     let existingItemIndex = -1;

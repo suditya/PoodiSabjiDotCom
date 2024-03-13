@@ -6,9 +6,6 @@ const FoodCard2 = (props: ICartProps) => {
     <div
       className="food-card"
       style={{
-        width: "80%",
-        maxWidth: "550px",
-        height: "350px",
         boxShadow: "9px 6px 17px 4px #3d3c3b33",
       }}
     >

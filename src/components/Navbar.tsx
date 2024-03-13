@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import { toast } from "react-toastify";
-import { isLoggedIn } from "../services/users";
+import { getUserName, isLoggedIn } from "../services/users";
 import { useContext } from "react";
 import { CartContext } from "../context/cart";
 
@@ -13,6 +13,7 @@ const Navbar = () => {
       // delay: 2500,
     });
     localStorage.removeItem("LoggedInEmail");
+    localStorage.removeItem("UserName");
     cart.setCartItems([]); // empty array
     console.log("🔒 After logout", localStorage.getItem("LoggedInEmail"));
   };
@@ -33,7 +34,10 @@ const Navbar = () => {
             <Link to="/register">📝 Register</Link>
           </>
         ) : (
-          <a onClick={handleLogout}>🚪 Logout</a>
+          <>
+            <a className="userName">Hi,{getUserName()}!</a>
+            <a className="logout" onClick={handleLogout}>🚪 Logout</a>
+          </>
         )}
       </div>
     </nav>

@@ -31,24 +31,25 @@ const Home = () => {
             />
           ))}
         </div>
-        {/* <div className="right"> */}
-        <div className="cart">
-          <Cart />
-          <hr />
-          {/* </div> */}
-        </div>
-
-        <button
-          style={{ transition: "all 0.8s ease-out" }}
-          className={
-            "go-to-checkout " + (cartItems.length > 0 ? "showCart" : "hideCart")
-          }
-          onClick={() => navigate("/checkout")}
-        >
-          Go To Checkout
-        </button>
       </div>
+      {/* <div className="right"> */}
+      <div className="cart">
+        <Cart />
+        <hr />
+        {/* </div> */}
+      </div>
+
+      <button
+        style={{ transition: "all 0.8s ease-out" }}
+        className={
+          "go-to-checkout " + (cartItems.length > 0 ? "showCart" : "hideCart")
+        }
+        onClick={() => navigate("/checkout")}
+      >
+        Go To Checkout
+      </button>
     </div>
+    // </div>
   );
 };
 

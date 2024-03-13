@@ -8,3 +8,7 @@ export const isLoggedIn = () => {
 export const getEmailId = () => {
   return localStorage.getItem("LoggedInEmail");
 };
+
+export const getUserName = () => {
+  return localStorage.getItem("UserName");
+};

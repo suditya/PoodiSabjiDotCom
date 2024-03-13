@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import "../styles/PaymentPopUp.css";
 import Navbar from "./Navbar";
 import { getEmailId, isLoggedIn } from "../services/users";

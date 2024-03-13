@@ -3,8 +3,12 @@ import "../styles/Login.css"; // Create a new CSS file for styling
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import axios from "axios";
+// import { error } from "console";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -65,7 +69,7 @@ const Register = () => {
       return;
     }
     try {
-      const userData = { email, password };
+      const userData = { email, password, name };
       const response = await axios.post(
         "http://localhost:3000/api/register",
         userData
@@ -77,6 +81,8 @@ const Register = () => {
           position: "top-center",
           // delay: 2500,
         });
+        localStorage.setItem("UserName", name);
+        setTimeout(() => navigate("/login"), 1000);
       } else {
         toast.error(
           `Not able to register due to ${error.response.data.message} ❌`,
@@ -104,6 +110,13 @@ const Register = () => {
         <div className="heading">REGISTER</div>
         <div className="form">
           <hr />
+          <input
+            type="text"
+            className="email"
+            placeholder="Enter you name 📛"
+            onChange={(e) => setName(e.target.value)}
+            required={true}
+          ></input>
           <input
             type="email"
             name="email"
@@ -133,6 +146,15 @@ const Register = () => {
           <button className="submit-btn" onClick={() => handleRegister()}>
             Register 🚀
           </button>
+        </div>
+        <div className="footer-container">
+          <p className="footer-text">
+            Already have an account!{" "}
+            <Link to={"/login"} className="register-link">
+              {" "}
+              Login Youself
+            </Link>
+          </p>
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import "../styles/Login.css";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_DEV_URL } from "../utility/common";
 import { CartContext } from "../context/cart";
 
@@ -70,6 +70,7 @@ const Login = () => {
         email,
         password,
       };
+      console.log(userData);
       const response = await axios.post(BACKEND_DEV_URL + "/login", userData);
       console.log(response);
       //   toast.info(JSON.stringify(response));
@@ -92,7 +93,8 @@ const Login = () => {
         });
       }
     } catch (error) {
-      toast.error(`Could not login due to: ${response.data.message} ❌`, {
+      console.log(error);
+      toast.error(`Could not login due to: ${error.response.data.message} ❌`, {
         position: "top-center",
         // delay: 2500,
       });
@@ -131,6 +133,15 @@ const Login = () => {
           <button className="submit-btn" onClick={() => handleSubmit()}>
             Submit 🚀
           </button>
+        </div>
+        <div className="footer-container">
+          <p className="footer-text">
+            Don't have an account yet?{" "}
+            <Link to={"/register"} className="register-link">
+              {" "}
+              Register Now
+            </Link>
+          </p>
         </div>
       </div>
     </>
