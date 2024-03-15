@@ -15,3 +15,12 @@ export interface ICartProps {
   price: number;
   quantity: number;
 }
+
+export interface IInventory {
+  id: string;
+  productName: string;
+  description: string;
+  price: number;
+  quantity: number;
+  imgSrc: string;
+}

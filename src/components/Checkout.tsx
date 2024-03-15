@@ -76,7 +76,7 @@ const Checkout = () => {
           <div className="delivery-container">
             <div className="current-address">
               <h5>CURRENT ADDRESS</h5>
-              <button>CHANGE</button>
+              <button className="button">CHANGE</button>
             </div>
           </div>
           <p className="section-title">Offers</p>
@@ -103,7 +103,7 @@ const Checkout = () => {
               </tr>
             </table>
             <button
-              className="place-order-btn"
+              className="place-order-btn button"
               onClick={() => handlePlaceOrder()}
             >
               PLACE ORDER

@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css"; 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,10 +6,11 @@ import "./App.css";
 import CarouselPractice from "./components/CarouselPractice";
 import Checkout from "./components/Checkout";
 import Home from "./components/Home";
+import Inventory from "./components/Inventory";
 import Login from "./components/Login";
+import PaymentPopup from "./components/PaymentPopUp";
 import PlaceOrder from "./components/PlaceOrder";
 import Register from "./components/Register";
-import PaymentPopup from "./components/PaymentPopUp";
 <style>
   @import
   url('https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Nova+Mono&family=Tektur&display=swap')
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<PaymentPopup />} />
+        <Route path="/inventory" element={<Inventory />} />
         {/* <Route path="/logout" element={<Logout />} /> */}
       </Routes>
       <ToastContainer />

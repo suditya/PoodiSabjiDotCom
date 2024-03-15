@@ -112,7 +112,8 @@ const Register = () => {
           <hr />
           <input
             type="text"
-            className="email"
+            className="email input"
+            // id="input"
             placeholder="Enter you name 📛"
             onChange={(e) => setName(e.target.value)}
             required={true}
@@ -121,6 +122,7 @@ const Register = () => {
             type="email"
             name="email"
             id=""
+            className="input"
             onChange={(e) => setEmail(e.target.value)}
             required={true}
             placeholder="Enter your email 📧"
@@ -130,6 +132,7 @@ const Register = () => {
             type="password"
             name=""
             id=""
+            className="input"
             onChange={(e) => setPassword(e.target.value)}
             required={true}
             placeholder="Enter your password 🔒"
@@ -138,6 +141,7 @@ const Register = () => {
             type="password"
             name=""
             id=""
+            className="input"
             onChange={(e) => setConfirmPassword(e.target.value)}
             required={true}
             placeholder="Confirm your password 🔒"
