@@ -4,28 +4,41 @@ import Carousel from "./Carousel";
 import Cart from "./Cart";
 import FoodCard2 from "./FoodCard2";
 import Navbar from "./Navbar";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/cart";
-import { ICartProps } from "../utility/interfaces";
+import { ICartProps, IInventory } from "../utility/interfaces";
 import "../styles/Home.css";
+import { BACKEND_DEV_URL } from "../utility/common";
+import axios from "axios";
 
 const Home = () => {
   const cart = useContext(CartContext);
   const cartItems = (cart.cartItems ?? []) as ICartProps[];
+  const [dishes, setDishes] = useState<IInventory[]>([]);
   const navigate = useNavigate();
+  useEffect(() => {
+    axios
+      .get(BACKEND_DEV_URL + "/inventory")
+      .then((response) => {
+        setDishes(response.data.inventory);
+        // console.log(response.data.inventory);
+      })
+      .catch((error) => {
+        console.log(error, "Failed to get inventory from server");
+      });
+  }, []);
   return (
     <div>
       <Navbar></Navbar>
-
       <Carousel />
       <div className="wrapper">
         <div className="food-container">
-          {foodItems.map((foodItem) => (
+          {dishes.map((foodItem) => (
             <FoodCard2
-              src={foodItem.src}
+              src={foodItem.imgSrc}
               description={foodItem.description}
-              title={foodItem.title}
-              price={150}
+              title={foodItem.productName}
+              price={foodItem.price}
               quantity={foodItem.quantity}
               id={foodItem.id}
             />
@@ -42,7 +55,7 @@ const Home = () => {
       <button
         style={{ transition: "all 0.8s ease-out" }}
         className={
-          "go-to-checkout " + (cartItems.length > 0 ? "showCart" : "hideCart")
+          "go-to-checkout button " + (cartItems.length > 0 ? "showCart" : "hideCart")
         }
         onClick={() => navigate("/checkout")}
       >
