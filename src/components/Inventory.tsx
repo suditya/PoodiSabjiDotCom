@@ -62,11 +62,11 @@ const Inventory = () => {
 
     updatedInventory.push(newProduct);
     setInventory(updatedInventory);
-    setProductName(null);
-    setDescription(null);
-    setImgSrc(null);
-    setPrice(null);
-    setQuantity(null);
+    setProductName("");
+    setDescription("");
+    setImgSrc("");
+    setPrice(0);
+    setQuantity(0);
     console.log(updatedInventory, " update in inventory");
   };
 
@@ -163,7 +163,7 @@ const Inventory = () => {
   };
 
   return (
-    <div>
+    <div className="inventory-container">
       <h1 className="heading">INVENTORY STATUS</h1>
       <div className="add-to-inventory-container">
         <input
@@ -337,9 +337,9 @@ const Inventory = () => {
           );
         })}
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <h1>END</h1>
-      </div>
+      </div> */}
     </div>
   );
 };
