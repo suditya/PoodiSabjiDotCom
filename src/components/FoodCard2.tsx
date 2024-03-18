@@ -7,15 +7,28 @@ const FoodCard2 = (props: ICartProps) => {
       className="food-card"
       style={{
         boxShadow: "9px 6px 17px 4px #3d3c3b33",
+        position: "relative",
       }}
     >
       <img src={props.src} alt={props.title} className="food-image" />
       <div className="food-details">
         <h3 className="food-title">{props.title}</h3>
-        <p className="food-price">Price: ${props.price}</p>
-        <div className="food-description">
+        <h3 className="food-title">
+          Price: <span>&#8377;</span>
+          {props.price}
+        </h3>
+        {/* <div className="food-description">
           <p>{props.description}</p>
-        </div>
+        </div> */}
+      </div>
+      <hr className="" />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "1rem",
+          right: "0.3rem",
+        }}
+      >
         <PlusMinus
           src={props.src}
           id={props.id}

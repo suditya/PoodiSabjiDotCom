@@ -28,7 +28,7 @@
   display: inline-block;
 }
 
-button {
+/* button {
   background-color: #007bff;
   color: black;
   border: none;
@@ -37,7 +37,7 @@ button {
   border-radius: 5px;
   font-weight: bold;
   display: inline-block;
-}
+} */
 
 button:hover {
   background-color: #0056b3;

@@ -49,7 +49,7 @@ const CartBox = (props: ICartProps) => {
           ></PlusMinus>
         </div>
         <div className="total-price">
-          $ {props.quantity * Number(props.price)}
+          <span>&#8377;</span> {props.quantity * Number(props.price)}
         </div>
       </div>
     </div>

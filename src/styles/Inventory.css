@@ -22,7 +22,7 @@
 } */
 .add-to-inventory-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   width: 85%;
   justify-items: center;
   margin: 1.5rem auto;
@@ -47,12 +47,12 @@
   justify-content: center;
   align-items: center;
   margin: 1rem auto;
-  height: 70vh;
+  height: 65vh;
   flex-direction: column;
   overflow-y: scroll;
   position: fixed;
   left: 50%;
-  top: 13rem;
+  top: 18rem;
   transform: translate(-50%);
   border-bottom: 4px solid black;
   padding: 0px 0px;
@@ -95,7 +95,7 @@ h1 {
   /* border-radius: 12px; */
   font-size: 1.3rem;
   font-weight: 600;
-  margin: 40rem auto 1rem auto;
+  margin: 46.8rem auto 1rem auto;
   position: sticky;
   top: 0rem;
   background-color: white;
@@ -113,11 +113,18 @@ h1 {
   margin: 0.5rem 0;
 }
 
-.non-edit,
-div#edit-div {
+.non-edit {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+#edit-div {
+  grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+  width: 100%;
+  display: grid;
   grid-template-rows: 1fr;
   justify-items: center;
   align-items: center;
@@ -130,12 +137,12 @@ div#edit-div {
 } */
 
 input#edit-items {
-  width: 20px;
-  padding: 21px 0;
+  padding: 22px 0px;
   font-size: 1rem;
   width: 100%;
   border-bottom: 0px;
   text-align: center;
+  margin-left: 2rem;
 }
 
 .item {
@@ -202,4 +209,19 @@ input {
   height: 500px;
   background-color: white;
   color: black;
+}
+.high-stock {
+  background-color: #3c6c3c; /* Light green for high stock */
+}
+
+.moderate-stock {
+  background-color: #bdbd39; /* Light yellow for moderate stock */
+}
+
+.low-stock {
+  background-color: #ab4949; /* Light red for low stock */
+}
+.stock-img {
+  width: 30px;
+  height: 30px;
 }

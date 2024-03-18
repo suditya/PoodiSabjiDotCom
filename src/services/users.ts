@@ -12,3 +12,7 @@ export const getEmailId = () => {
 export const getUserName = () => {
   return localStorage.getItem("UserName");
 };
+
+export const isAdminLogin = () => {
+  return localStorage.getItem("adminLogin") === "true";
+};

@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [adminLogin, setAdminLogin] = useState<boolean>(false);
   //   console.log(email, " ", password);
   const cart = useContext(CartContext);
 
@@ -47,9 +48,9 @@ const Login = () => {
 
   const handleSubmit = async () => {
     // validate the email and the password
-    console.log("submit button clicked");
+    // console.log("submit button clicked");
     const isValid = isValidForm();
-    console.log(passwordError, "  errros ", emailError);
+    // console.log(passwordError, "  errros ", emailError);
     if (!isValid) {
       if (passwordError) {
         toast.error(passwordError, {
@@ -69,23 +70,34 @@ const Login = () => {
       const userData = {
         email,
         password,
+        adminLogin,
       };
       console.log(userData);
       const response = await axios.post(BACKEND_DEV_URL + "/login", userData);
       console.log(response);
       //   toast.info(JSON.stringify(response));
       if (response.status === 200) {
-        toast.success("Successfully LoggedIn 🎉", {
-          position: "top-center",
-          // delay: 2500,
-        });
+        toast.success(
+          `Successfully LoggedIn ${adminLogin ? "as a admin" : ""} 🎉`,
+          {
+            position: "top-center",
+          }
+        );
         localStorage.setItem("LoggedInEmail", email);
+        if (adminLogin) {
+          localStorage.setItem("adminLogin", "true");
+        }
+        console.log(localStorage);
         const response = await axios.get(BACKEND_DEV_URL + "/get-cart", {
           params: { email: email },
         });
-        console.log(response, " from the backend after login");
+        // console.log(response, " from the backend after login");
         cart.setCartItems(response.data.cartItems);
-        setTimeout(() => navigate("/"), 2000);
+        if (adminLogin) {
+          setTimeout(() => navigate("/inventory"), 2000);
+        } else {
+          setTimeout(() => navigate("/"), 2000);
+        }
       } else {
         toast.error(`Could not login due to: ${response.data.message} ❌`, {
           position: "top-center",
@@ -131,6 +143,16 @@ const Login = () => {
             required={true}
             placeholder="Enter your password 🔒"
           />
+          <span className="login-as-admin">
+            <label htmlFor="">login as a Admin</label>
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              onChange={() => setAdminLogin(!adminLogin)}
+            />
+          </span>
+          <hr />
           {/* <label htmlFor="error">{passwordError}</label> */}
           <button className="submit-btn" onClick={() => handleSubmit()}>
             Submit 🚀

@@ -133,7 +133,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   width: 320px;
-  height: 400px;
+  height: 320px;
   transition: transform 0.4s ease-in-out;
   box-shadow: 9px 6px 17px 4px #3d3c3b33;
 }
@@ -145,18 +145,24 @@ body {
 
 .food-card img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 5px solid rgb(76, 175, 80);
 }
 
 .food-details {
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  gap: 0rem 0rem;
+  align-content: center;
 }
 
 .food-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
+  /* font-family: monospace; */
 }
 
 .food-description {
@@ -246,3 +252,8 @@ body {
   border-top-left-radius: 0rem;
   border-bottom-right-radius: 5rem;
 } */
+.add-to-cart-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 10rem;
+}

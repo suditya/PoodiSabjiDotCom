@@ -43,9 +43,10 @@ const Checkout = () => {
                 <img src={item.src} alt="" />
                 <div className="item-details">
                   <p className="item-title">{item.title}</p>
-                  <p className="item-description">{item.description}</p>
+                  {/* <p className="item-description">{item.description}</p> */}
                   <p className="item-price">
-                    Total Price: ${item.price * item.quantity}
+                    Total Price: <span>&#8377;</span>
+                    {item.price * item.quantity}
                   </p>
                 </div>
                 <PlusMinus
@@ -87,19 +88,29 @@ const Checkout = () => {
             <table style={{ margin: "10px 0px" }}>
               <tr>
                 <td>Sub Total</td>
-                <td>${getTotalPrice()}</td>
+                <td>
+                  <span>&#8377;</span>
+                  {getTotalPrice()}
+                </td>
               </tr>
               <tr>
                 <td>Discount</td>
-                <td>$0</td>
+                <td>
+                  <span>&#8377;</span> 0
+                </td>
               </tr>
               <tr>
                 <td>Taxes and Charges</td>
-                <td>$0</td>
+                <td>
+                  <span>&#8377;</span> 0
+                </td>
               </tr>
               <tr>
                 <td>Grand Total</td>
-                <td>${getTotalPrice()}</td>
+                <td>
+                  <span>&#8377;</span>
+                  {getTotalPrice()}
+                </td>
               </tr>
             </table>
             <button

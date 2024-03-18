@@ -164,11 +164,12 @@ const PlusMinus = (props: ICartProps) => {
       ) : (
         <button
           style={{
-            backgroundColor: "#4CAF50",
+            backgroundColor: "rgb(76, 175, 80)",
             color: "white",
-            border: "none",
-            padding: "8px 12px",
-            cursor: "pointer",
+            padding: "1rem 1rem",
+            borderRadius: "13px",
+            fontFamily: "monospace",
+            border:"none"
           }}
           onClick={() => addToCart()}
         >

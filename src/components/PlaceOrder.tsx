@@ -57,12 +57,12 @@ const PlaceOrder = () => {
                 <tr key={item.id}>
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
-                  <td>${item.price}</td>
+                  <td><span>&#8377;</span> {item.price}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p>Total: ${getTotalPrice()}</p>
+          <p>Total: <span>&#8377;</span> {getTotalPrice()}</p>
           <button
             // disabled={cartItems.length <= 0}
             onClick={() => handlePlaceOrder()}

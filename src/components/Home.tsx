@@ -30,7 +30,11 @@ const Home = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <Carousel />
+      {/* <Carousel />
+       */}
+      {/* <div className="image-container">
+        <img src="https://youtu.be/-YuI-cQtasc" alt="" />
+      </div> */}
       <div className="wrapper">
         <div className="food-container">
           {dishes.map((foodItem) => (
